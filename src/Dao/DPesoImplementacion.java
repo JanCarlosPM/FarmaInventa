@@ -7,10 +7,10 @@ import java.sql.*;
  *
  * @author Jan Carlos
  */
-public class DPesoImplementacion implements DPeso{
-    
+public class DPesoImplementacion implements DPeso {
+
     Conexion conexion = Conexion.getInstance();
-   
+
     @Override
     public void ingresar(Peso Peso) {
         try {
@@ -21,7 +21,6 @@ public class DPesoImplementacion implements DPeso{
             modificar.setDouble(2, Peso.getPeso2());
 
             modificar.executeUpdate();
-
             conexion.close(conectar);
 
         } catch (SQLException e) {

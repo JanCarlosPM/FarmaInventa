@@ -18,7 +18,7 @@ public class DPersonalImplementacion implements DPersonal {
         try {
             Connection conectar = conexion.getConexion();
             PreparedStatement buscarU = conectar.prepareStatement("SELECT Usuario, Contraseña FROM Login Where Usuario = ? and Contraseña = ?");
-
+            buscarU.setQueryTimeout(60); 
             buscarU.setString(1, Usuario.getUsuario());
             buscarU.setString(2, Usuario.getContraseña());
             ResultSet consulta = buscarU.executeQuery();
@@ -35,6 +35,7 @@ public class DPersonalImplementacion implements DPersonal {
                 a.setVisible(true);
             }
             conexion.close(conectar);
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -45,7 +46,7 @@ public class DPersonalImplementacion implements DPersonal {
         try {
             Connection conectar = conexion.getConexion();
             PreparedStatement buscar = conectar.prepareStatement("SELECT * FROM Login Where Usuario = ?");
-
+            buscar.setQueryTimeout(60); 
             buscar.setString(1, Usuario.getUsuario());
             ResultSet consulta = buscar.executeQuery();
 
@@ -72,7 +73,7 @@ public class DPersonalImplementacion implements DPersonal {
         try {
             Connection conectar = conexion.getConexion();
             PreparedStatement buscar = conectar.prepareStatement("SELECT Usuario FROM Login Where Usuario = ?");
-
+            buscar.setQueryTimeout(60); 
             buscar.setString(1, Usuario.getUsuario());
             ResultSet consulta = buscar.executeQuery();
 
@@ -98,7 +99,7 @@ public class DPersonalImplementacion implements DPersonal {
         try {
             Connection conectar = conexion.getConexion();
             PreparedStatement buscarUser = conectar.prepareStatement("SELECT usuario, contraseña FROM Login WHERE usuario = ? and contraseña = ?");
-
+            buscarUser.setQueryTimeout(60); 
             buscarUser.setString(1, Usuario.getUsuario());
             buscarUser.setString(2, Usuario.getContraseña());
             ResultSet consultaUser = buscarUser.executeQuery();
@@ -113,7 +114,6 @@ public class DPersonalImplementacion implements DPersonal {
                 modificarUser.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Contraseña Modificada con Éxito", "Farmacia", 2);
             }
-
             conexion.close(conectar);
 
         } catch (Exception e) {
@@ -126,7 +126,7 @@ public class DPersonalImplementacion implements DPersonal {
         try {
             Connection conectar = conexion.getConexion();
             PreparedStatement buscar = conectar.prepareStatement("SELECT * FROM Login WHERE usuario = ?");
-
+            buscar.setQueryTimeout(60); 
             buscar.setString(1, Usuario.getUsuario());
             ResultSet consulta = buscar.executeQuery();
 
@@ -152,7 +152,6 @@ public class DPersonalImplementacion implements DPersonal {
                 FrmAdministrador b = new FrmAdministrador();
                 b.setVisible(true);
             }
-
             conexion.close(conectar);
 
         } catch (Exception e) {
@@ -165,7 +164,7 @@ public class DPersonalImplementacion implements DPersonal {
         try {
             Connection conectar = conexion.getConexion();
             PreparedStatement buscarUser1 = conectar.prepareStatement("SELECT * FROM Login Where Usuario = ?");
-
+            buscarUser1.setQueryTimeout(60); 
             buscarUser1.setString(1, Usuario.getUsuario());
             ResultSet consulta = buscarUser1.executeQuery();
 
@@ -177,6 +176,7 @@ public class DPersonalImplementacion implements DPersonal {
                 JOptionPane.showMessageDialog(null, "Usuario no Registrado", "Farmacia", 2);
             }
             conexion.close(conectar);
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -210,7 +210,7 @@ public class DPersonalImplementacion implements DPersonal {
         try {
             Connection conectar = conexion.getConexion();
             PreparedStatement buscarPass = conectar.prepareStatement("SELECT usuario, correo FROM Login Where usuario = ? and correo = ?");
-
+            buscarPass.setQueryTimeout(60); 
             buscarPass.setString(1, Usuario.getUsuario());
             buscarPass.setString(2, Usuario.getCorreo());
             ResultSet consulta = buscarPass.executeQuery();
@@ -238,7 +238,6 @@ public class DPersonalImplementacion implements DPersonal {
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario y/o Correo no Coinciden", "Farmacia", 2);
             }
-
             conexion.close(conectar);
         } catch (Exception e) {
             System.out.println(e);
@@ -250,6 +249,7 @@ public class DPersonalImplementacion implements DPersonal {
         try {
             Connection conectar = conexion.getConexion();
             PreparedStatement insertar = conectar.prepareStatement("INSERT INTO prueba(imagen) VALUES(?)");
+            insertar.setQueryTimeout(60); 
             insertar.setBytes(1, Usuario.getImagen());
             insertar.executeUpdate();
 

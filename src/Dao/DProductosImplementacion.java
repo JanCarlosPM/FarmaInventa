@@ -13,7 +13,7 @@ public class DProductosImplementacion implements DProductos {
         try {
             Connection conectar = conexion.getConexion();
             PreparedStatement buscar = conectar.prepareStatement("SELECT * FROM Productos Where producto = ?");
-
+            buscar.setQueryTimeout(60); 
             buscar.setString(1, productos.getProducto());
             ResultSet consulta = buscar.executeQuery();
 
@@ -22,6 +22,7 @@ public class DProductosImplementacion implements DProductos {
                 JOptionPane.showMessageDialog(null, "Producto ya registrado, intente con otro", "Farmacia", 2);
             } else {
                 PreparedStatement insertar = conectar.prepareStatement("INSERT INTO Productos(producto, descripcion, precio, stock, fecha_vencimiento, fecha_registro) VALUES(?, ?, ?, ?, ?, ?)");
+                insertar.setQueryTimeout(60); 
                 insertar.setString(1, productos.getProducto());
                 insertar.setString(2, productos.getDescripcion());
                 insertar.setFloat(3, productos.getPrecio());
@@ -32,11 +33,10 @@ public class DProductosImplementacion implements DProductos {
                 insertar.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Producto Registrado", "Farmacia", 2);
             }
-
             conexion.close(conectar);
 
         } catch (SQLException e) {
-            //System.out.println(e);
+            System.out.println(e);
         }
     }
 
@@ -75,6 +75,7 @@ public class DProductosImplementacion implements DProductos {
                 JOptionPane.showMessageDialog(null, "Producto Modificado con Éxito", "Farmacia", 2);
             }
             conexion.close(conectar);
+
         } catch (SQLException e) {
             //System.out.println(e);
         }
@@ -133,6 +134,7 @@ public class DProductosImplementacion implements DProductos {
                 JOptionPane.showMessageDialog(null, "Producto no Encontrado", "Farmacia", 2);
             }
             conexion.close(conectar);
+
         } catch (Exception e) {
             //System.out.println(e);
         }
@@ -148,8 +150,8 @@ public class DProductosImplementacion implements DProductos {
             modificar.setString(2, productos.getProducto());
             modificar.executeUpdate();
             JOptionPane.showMessageDialog(null, "Producto Listado con Éxito", "Farmacia", 2);
-
             conexion.close(conectar);
+
         } catch (SQLException e) {
             //System.out.println(e);
         }
@@ -178,7 +180,6 @@ public class DProductosImplementacion implements DProductos {
 
                 insertar.executeUpdate();
             }
-
             conexion.close(conectar);
 
         } catch (SQLException e) {
@@ -216,6 +217,7 @@ public class DProductosImplementacion implements DProductos {
             modificar.setString(2, productos.getProducto());
             modificar.executeUpdate();
             conexion.close(conectar);
+
         } catch (SQLException e) {
             //System.out.println(e);
         }

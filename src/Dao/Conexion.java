@@ -9,16 +9,17 @@ public class Conexion {
     private static Conexion instancia;
     private static final String SERVIDOR = "localhost";
     private static final String USUARIO = "sa";
-    private static final String PW = "Usuario123.";
+    private static final String PW = "1234";
     private static final String NOMBREBD = "Registro_Ventas_Farmacia";
     private static final String PUERTO = "1434";
     private static final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 
     public Connection getConexion() {
         try {
-            String conexionUrl = "jdbc:sqlserver://" + SERVIDOR + ": " + PUERTO
-                    + "; Databasename= " + NOMBREBD + "; user= " + USUARIO
-                    + "; password = " + PW + ";";
+            String conexionUrl = "jdbc:sqlserver://" + SERVIDOR + ":" + PUERTO
+                    + ";databaseName=" + NOMBREBD + ";user=" + USUARIO
+                    + ";password=" + PW + ";loginTimeout=60;";
+
             Class.forName(DRIVER);
             return (DriverManager.getConnection(conexionUrl));
         } catch (ClassNotFoundException | SQLException ex) {

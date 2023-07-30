@@ -25,7 +25,7 @@ public class DVentasImplementacion implements DVentas {
             insertarVenta.setString(8, ventas.getFecha_venta());
             insertarVenta.setString(9, ventas.getHora_venta());
             insertarVenta.executeUpdate();
-            
+
             conexion.close(conectar);
 
         } catch (Exception e) {
